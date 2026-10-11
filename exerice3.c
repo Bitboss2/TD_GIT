@@ -5,54 +5,55 @@
 int main () 
 {
     char motcomplet[100];
-    printf("entrez un mot");
+    printf("entrez un mot \n");
     scanf("%s", &motcomplet);
-    char motincomplet [strlen(motcomplet)];
+    char motincomplet [strlen(motcomplet) + 1];
     
     
-    for(int i = 0, i < strlen(motcomplet), i++)
+    for(int i = 0; i < strlen(motcomplet); i++)
     {
-        motincomplet[i]= "_"
+        motincomplet[i] = '-';
     }
-    printf("%s", motincomplet);
+    printf("voici le mot incomplet \n");
+    motincomplet[strlen(motcomplet)] = '\0';
+    printf("%s \n", motincomplet);
     
     
-    int ltrouve = 0;
     int gage = 0;
-    char p0 [] = "\n\n\n\n\n\n\n-------\n";
-    char p1 [] = "\n |\n |\n |\n |\n |\n |\n-------\n";
-    char p2 [] = " -------\n | |\n |\n |\n |\n |\n-------\n";
-    char p3 [] = " -------\n | |\n | O\n |\n |\n |\n-------\n";
-    char p4 [] = " -------\n | |\n | O\n | |\n |\n |\n-------\n";
-    char p5 [] = " -------\n | |\n | O\n | /|\\\n |\n |\n-------\n";
-    char p6 [] = " -------\n | |\n | O\n | /|\\\n | / \\\n |\n-------\n";
 
-    char p[] = {p0, p1, p2, p3, p4, p5, p6};
+    char *p[] = {
+        "\n\n\n\n\n\n\n-------\n",
+        "\n |\n |\n |\n |\n |\n |\n-------\n",
+        " -------\n | |\n |\n |\n |\n |\n-------\n", 
+        " -------\n | |\n | O\n |\n |\n |\n-------\n",
+        " -------\n | |\n | O\n | |\n |\n |\n-------\n",
+        " -------\n | |\n | O\n | /|\\\n |\n |\n-------\n",
+        " -------\n | |\n | O\n | /|\\\n | / \\\n |\n-------\n" 
+    };
 
 
     while (gage < 7)
     {
-        for(int i = 0, i<7, i++)
+        char lettre = '-';
+        int lreussi = 0;
+        printf("entrez une lettre \n");
+        scanf(" %c", &lettre);
+        for(int i = 0; i < strlen(motcomplet); i++)
         {
-        char c = '';
-        printf("entrez une lettre");
-        scanf("%c", &c);
-        for(int g = 0, g < strlen(motcomplet), g++)
-        {
-            if(motcomplet[g] == c)
+            if(motcomplet[i] == lettre)
             {
-                ltrouve++;
-                printf("bravo lettre suivante");
-                motcomplet[g]= motincomplet[g];
-            }
-            if(g == strlen(motcomplet) + 1 )
-            {
-                printf("%s", p[i]);
+                motincomplet[i] = motcomplet[i];
+                printf("bravo lettre trouvee %s \n", motincomplet);
+                lreussi = 1;
             }
         }
-        printf("%s", p[i]);
+        if( lreussi != 1)
+        {
+            gage++;
+            printf("ce n est pas la bonne lettre \n");
+            printf("%s", p[gage - 1]);
+
         }
-        printf("%s", motincomplet);
     }
 
 
